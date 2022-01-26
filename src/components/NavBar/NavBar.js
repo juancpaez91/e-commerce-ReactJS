@@ -1,9 +1,12 @@
 import { Container, Nav, NavDropdown, Navbar} from "react-bootstrap";
+import CarritoCompras from "../Icons/CarritoCompras";
+import "./NavBar.css" 
+
 
 const BTNavBar = () => {
     return (
-        <Navbar bg="secondary" expand="lg">
-            <Container style={{margin: 10}}>
+        <Navbar className="NavStyle container-fluid" expand="lg">
+            <Container>
                 <Navbar.Brand href="#home">My e-commerce</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -18,6 +21,7 @@ const BTNavBar = () => {
                     </NavDropdown>
                 </Nav>
                 </Navbar.Collapse>
+                <CarritoCompras/>
             </Container>
         </Navbar>
     )
