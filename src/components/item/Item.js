@@ -1,7 +1,7 @@
 import { Card } from "react-bootstrap";
 import ItemCounter  from "../item-counter/ItemCounter"
 
-const Item = ({name, price, stock}) => {
+const Products = ({name, price, stock}) => {
     return <div>
         <Card style={{ width: '18rem' }}>
             <Card.Body>
@@ -17,4 +17,4 @@ const Item = ({name, price, stock}) => {
     </div>;
 };
 
-export default Item;
+export default Products;
