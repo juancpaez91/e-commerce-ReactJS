@@ -1,64 +1,50 @@
 import { getActiveElement } from "@testing-library/user-event/dist/utils";
 import { useEffect, useState } from "react";
-import { product } from "../../data/Products";
 import { productsAPI } from "../../helpers/promises";
 import Item from "../item/Item"
+import ItemDetailContainer from "../item-detail-container/ItemDetailContainer"
 
 
 
 const ProductsListContainer = () => {
-    // const [products, setProducts] =useState([]);
-    const [itemML, setItemML] =useState([]);
+    const [item, setItem] =useState([]);
     const [selectItem, setSelectItem]= useState ("")
-    const [loadingItemML, setloadingItemML]= useState(true)
+    const [loadingItem, setloadingItem]= useState(true)
     
     useEffect(() => {
-        // getProducts();
-        console.log(selectItem)
-        getItemsML();
+        getItems();
         }, []);
     
-
-    const getItemsML = async () =>{
+    const getItems = async () =>{
         try {
             let data = await productsAPI
-            setItemML(data)
+            setItem(data)
         } catch (error) {
             console.log(error);  
         } finally{
             setTimeout (()=>{
-            setloadingItemML(false);
+            setloadingItem(false);
         }, 2000);
         }
     };
 
-    // const getProducts = async () =>{
-    //     try{
-    //         const result = await productsAPI;
-    //         setProducts (result);
-    //     }catch(error){
-    //         console.log({error});
-    //     }finally {
-    //         console.log("finalizó de la carga de productos");
-    //     }
-    // };
-
-    if (loadingItemML){
+    if (loadingItem){
         return <h3> Cargando articulos...</h3>;
     }
-
+    // if (selectItem){
+    //     const SelectedItem = item.find(i => i.id===selectItem)
+    //     return (
+    //         <ItemDetailContainer  name={SelectedItem.title} price = {SelectedItem.price} description = {SelectedItem.description} image ={SelectedItem.image}></ItemDetailContainer>
+    //                 )
+    // }
 
     return (
         <div>
             {
-                itemML.map(({id, title, price, image, description} )=>(
-                    <Item key={id} id={id} name= {title} price= {price} image= {image} description={description} showItem={setSelectItem}/>
-                    
-                    ))
-                }
-            {/* {product.map((products) => (
-                <Product key={products.id}{...products}/>
-            ))} */}
+                item.map(({id, title, price, image, description} )=>(
+                    <Item key={id} id={id} name= {title} price= {price} image= {image} description={description} showItem={setSelectItem} />
+                ))
+            }
         </div>
         );
 
