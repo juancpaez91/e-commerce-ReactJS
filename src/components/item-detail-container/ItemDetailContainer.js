@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import { getItem } from "../../helpers/promises"
 import ItemCounter from "../item-counter/ItemCounter"
 import {getFirestore, getDoc, doc} from 'firebase/firestore/lite';
+import "../item/itemCard.css"
 
 
 const ItemDetailContainer = () => {
     const [selectedItem, setSelectedItem]=useState({})
+    const [stockActual, setStockActual]= useState (0)
     const {id} = useParams();
     useEffect( ()=>{
         const db =getFirestore();
@@ -16,21 +18,28 @@ const ItemDetailContainer = () => {
         getDoc(itemsColl)
         .then(item=>{
             setSelectedItem({id:item.id, ...item.data()})
+            setStockActual (item.data().stock)
         })
     }, []); 
+    function modificarStock(counter){
+    console.log (counter)
+        setStockActual(selectedItem.stock - counter)
+    
+    }
 
   return (
       <div>
-            <Card style={{ width: '18rem' }}>
+            <Card className="itemCard">
                 <Card.Body>
-                    <Card.Img variant="top" src={selectedItem.image} />
-                    <Card.Title >{selectedItem.name} </Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{selectedItem.price}</Card.Subtitle>
-                    <Card.Subtitle className="mb-2 text-muted">{selectedItem.catName}</Card.Subtitle>
+                    <Card.Img className="cardImage" src={selectedItem.image} />
+                    <Card.Title className="cardName" >{selectedItem.name} </Card.Title>
+                    <Card.Subtitle className="cardSubname">{selectedItem.price}</Card.Subtitle>
+                    <Card.Subtitle className="cardSubname">{selectedItem.catName}</Card.Subtitle>
                     <Card.Text>{selectedItem.description} </Card.Text>
-                    <ItemCounter stock={selectedItem.stock}/>
                 </Card.Body>
             </Card>
+                    <ItemCounter onClick= {modificarStock} stock={selectedItem.stock}/>
+                    <p> {stockActual} </p>
         </div>
   )}
 

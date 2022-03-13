@@ -14,6 +14,9 @@ const Item = ({id, name, price, image,}) => {
                 <Card.Subtitle className="cardSubname">{price}</Card.Subtitle>
                 {/* <Card.Text>{description} </Card.Text> */}
                 {/* <ItemCounter/> */}
+                <button>
+                <Link className="cardName" to={"/item/" + id} >{"Ver mas"}</Link>
+                </button>
             </Card.Body>
         </Card>
     </div>;

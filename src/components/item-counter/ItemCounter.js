@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 
 
-const ItemCounter = ({stock}) => {
+const ItemCounter = ({stock, onClick}) => {
 const [counter, setCounter] = useState(0);
 
 
 const updateCounter = () =>{
     if (counter<stock) {
-        setCounter(counter+1)
+        setCounter(counter+1, onClick(counter+1))
     }
     else{
         alert("No tenemos stock suficiente")
@@ -17,7 +17,7 @@ const updateCounter = () =>{
 
 const decrementCounter =() =>{
     if (counter <= stock && counter!=0) {
-        setCounter(counter-1)
+        setCounter(counter-1, onClick(counter-1))
         
     } 
     else {
