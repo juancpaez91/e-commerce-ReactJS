@@ -1,20 +1,19 @@
 import { Card } from "react-bootstrap";
-import ItemCounter  from "../item-counter/ItemCounter"
 import { Link } from "react-router-dom";
+import ItemCounter  from "../item-counter/ItemCounter"
+import "./itemCard.css"
 
-
-const Item = ({id, name, price, image, stock=10, description, showItem}) => {
-
+const Item = ({id, name, price, image,}) => {
     return <div>
-        <Card style={{ width: '18rem' }} id={id} onClick={() => showItem(id)}>
+        <Card className="itemCard" style={{ width: '18rem' }} id={id}>
             <Card.Body>
-                <Card.Img variant="top" src={image} />
+                <Card.Img className="cardImage" variant="top" src={image} />
                 <Card.Title >
-                    <Link to={"/item/" + id} >{name}</Link>
+                    <Link className="cardName" to={"/item/" + id} >{name}</Link>
                 </Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{price}</Card.Subtitle>
-                <Card.Text>{description} </Card.Text>
-                <ItemCounter stock={stock}/>
+                <Card.Subtitle className="cardSubname">{price}</Card.Subtitle>
+                {/* <Card.Text>{description} </Card.Text> */}
+                {/* <ItemCounter/> */}
             </Card.Body>
         </Card>
     </div>;

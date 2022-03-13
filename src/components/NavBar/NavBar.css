@@ -1,3 +1,6 @@
 .NavStyle{
-    background-color: rgba(0, 0, 0, 0.322);
-}
+        height: 300px;
+        background-color: rgba(0, 0, 0, 0.418);
+        border-bottom-left-radius: 50% 40%;
+        border-bottom-right-radius: 50% 40%;
+    }

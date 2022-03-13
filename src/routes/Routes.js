@@ -13,6 +13,7 @@ const Routes = () => {
             <Route exact path="/" element={<ItemListContainer/>} />
             <Route path="/item/:id" element={<ItemDetailContainer/>} />
             <Route path="/category/:id" element={<Category/>} />
+            {/* <Route path="/cart" element={<Cart/>} /> */}
         </Switch>
       </BrowserRouter>
   )

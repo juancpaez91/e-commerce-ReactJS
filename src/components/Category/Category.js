@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import ItemListContainer from "../item-list-container/ItemListContainer"
 
 const Category = () => {
-    const [categories, setCategories]= useState([]) 
-
+  const {}= useParams
+  
+    const [selectedCategory, setSelectedCategory]= useState("")
+    
+    const {id}= useParams();
     useEffect (()=>{
-
+      setSelectedCategory(id)
     })
+
   return (
-    <div>Category</div>
+    <ItemListContainer category = {id}></ItemListContainer>
   )
 }
 
