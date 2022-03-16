@@ -1,0 +1,12 @@
+.descriptionContent{
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+    display: flex;
+    margin:0 100px;
+}
+.descriptionText{
+    width: 500px;
+    margin: 50px;
+    font-size: 30px;
+}

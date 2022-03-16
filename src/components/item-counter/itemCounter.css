@@ -1,0 +1,8 @@
+.addToCart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cantidadItems{
+    padding: 10px;
+}

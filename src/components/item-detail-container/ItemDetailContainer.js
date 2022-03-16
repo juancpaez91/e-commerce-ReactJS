@@ -1,15 +1,18 @@
 import { Card } from "react-bootstrap";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext} from 'react'
 import { useParams } from "react-router-dom";
-import { getItem } from "../../helpers/promises"
 import ItemCounter from "../item-counter/ItemCounter"
 import {getFirestore, getDoc, doc} from 'firebase/firestore/lite';
 import "../item/itemCard.css"
+import "./ItemDetailContainer.css"
+import { CartContext } from "../../context/cartContext";
 
 
-const ItemDetailContainer = () => {
+const ItemDetailContainer = ({sumarCarrito}) => {
     const [selectedItem, setSelectedItem]=useState({})
     const [stockActual, setStockActual]= useState (0)
+    const {addItem} = useContext(CartContext)
+
     const {id} = useParams();
     useEffect( ()=>{
         const db =getFirestore();
@@ -22,25 +25,36 @@ const ItemDetailContainer = () => {
         })
     }, []); 
     function modificarStock(counter){
-    console.log (counter)
         setStockActual(selectedItem.stock - counter)
-    
+        sumarCarrito(counter)
     }
 
-  return (
-      <div>
+    const handleAddToCart = () =>{
+        addItem({
+            selectedItem,
+            stockActual
+        })
+    }
+
+return (
+    <>
+        <div className="descriptionContent">
             <Card className="itemCard">
                 <Card.Body>
                     <Card.Img className="cardImage" src={selectedItem.image} />
                     <Card.Title className="cardName" >{selectedItem.name} </Card.Title>
                     <Card.Subtitle className="cardSubname">{selectedItem.price}</Card.Subtitle>
                     <Card.Subtitle className="cardSubname">{selectedItem.catName}</Card.Subtitle>
-                    <Card.Text>{selectedItem.description} </Card.Text>
                 </Card.Body>
             </Card>
-                    <ItemCounter onClick= {modificarStock} stock={selectedItem.stock}/>
-                    <p> {stockActual} </p>
+            <div>
+                <Card.Text className="descriptionText"> {selectedItem.description}</Card.Text>
+                <ItemCounter onClick= {modificarStock} stock={selectedItem.stock}/>
+                <h6> Stock disponible ({stockActual}) unidades </h6>
+                <button onClick={handleAddToCart}> Comprar  </button>
+            </div>
         </div>
-  )}
+    </>
+)}
 
 export default ItemDetailContainer;

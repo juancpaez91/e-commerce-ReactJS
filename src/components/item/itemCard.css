@@ -1,7 +1,6 @@
 .itemCard{
     position: relative;
-    width: 300px;
-    height: 600px;
+    height: fit-content;
     margin: 5px;
     background: #191919;
     border-radius: 20px;
@@ -33,9 +32,7 @@
 }
 .cardImage{
     position: relative;
-    height: 50%;
     width: 100%;
-    object-fit: contain;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,4 +56,33 @@
     color: white;
     font-weight: 700;
     letter-spacing: 1px;
+}
+.btnVerMas{
+    position: relative;
+    top: 100px;
+    opacity: 0;
+    padding: 10px 30px;
+    margin-top: 15px;
+    color: #000000;
+    text-decoration: none;
+    background: #ffce00;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+a{
+    text-decoration: none;
+    color:#000000;
+    font-weight: 100;
+}
+.card:hover .btnVerMas {
+    top: 0;
+    opacity: 1;
+
+}
+
+.mouse {
+height: 300px;
+width: auto;
 }

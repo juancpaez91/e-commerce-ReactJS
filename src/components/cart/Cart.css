@@ -1,0 +1,10 @@
+.carrito{
+    width: 50px;
+}
+
+.mostrarCant{
+    background: rgb(253, 0, 0);
+    border-radius: 50%;
+    margin: 5px;
+    padding: 5px
+}

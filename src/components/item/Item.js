@@ -1,6 +1,5 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ItemCounter  from "../item-counter/ItemCounter"
 import "./itemCard.css"
 
 const Item = ({id, name, price, image,}) => {
@@ -12,10 +11,10 @@ const Item = ({id, name, price, image,}) => {
                     <Link className="cardName" to={"/item/" + id} >{name}</Link>
                 </Card.Title>
                 <Card.Subtitle className="cardSubname">{price}</Card.Subtitle>
-                {/* <Card.Text>{description} </Card.Text> */}
-                {/* <ItemCounter/> */}
-                <button>
-                <Link className="cardName" to={"/item/" + id} >{"Ver mas"}</Link>
+                <button className="btnVerMas">
+                    <Link to={"/item/" + id} >
+                        <h6> Ver mas </h6>
+                    </Link>
                 </button>
             </Card.Body>
         </Card>

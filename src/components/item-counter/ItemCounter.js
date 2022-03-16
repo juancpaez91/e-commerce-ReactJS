@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import "./itemCounter.css"
 
 
 const ItemCounter = ({stock, onClick}) => {
@@ -26,11 +27,11 @@ const decrementCounter =() =>{
 }
 
 return (
-    <>
-        <Button variant="primary" onClick={updateCounter}> Agregar al carrito </Button>
-            <p> {counter} </p>
-        <Button variant="primary" onClick={decrementCounter}> Quitar del carrito </Button>
-    </>
+    <div className="addToCart">
+        <Button variant="primary" onClick={updateCounter}> + </Button>
+            <h3 className="cantidadItems"> {counter} </h3>
+        <Button variant="primary" onClick={decrementCounter}> - </Button>
+    </div>
 );
 
 };
